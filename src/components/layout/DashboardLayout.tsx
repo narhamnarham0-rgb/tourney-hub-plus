@@ -15,6 +15,7 @@ const navItems = [
   { label: "Teams", icon: Users, path: "/teams" },
   { label: "Players", icon: UserCircle, path: "/players" },
   { label: "Matches", icon: Swords, path: "/matches" },
+  { label: "Calendar", icon: CalendarDays, path: "/calendar" },
   { label: "Venues", icon: MapPin, path: "/venues" },
   { label: "Referees", icon: Shield, path: "/referees" },
   { label: "Standings", icon: ListOrdered, path: "/standings" },
