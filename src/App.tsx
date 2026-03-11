@@ -6,21 +6,52 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import DashboardPage from "@/pages/DashboardPage";
 import OrganizationsPage from "@/pages/OrganizationsPage";
+import OrganizationDetailPage from "@/pages/organizations/OrganizationDetailPage";
 import TournamentsPage from "@/pages/TournamentsPage";
 import TournamentDetailPage from "@/pages/TournamentDetailPage";
+import TournamentCreatePage from "@/pages/tournaments/TournamentCreatePage";
+import TournamentBracketPage from "@/pages/tournaments/TournamentBracketPage";
+import TournamentSchedulePage from "@/pages/tournaments/TournamentSchedulePage";
+import SeasonManagementPage from "@/pages/tournaments/SeasonManagementPage";
 import TeamsPage from "@/pages/TeamsPage";
+import TeamDetailPage from "@/pages/teams/TeamDetailPage";
+import TeamRegistrationPage from "@/pages/teams/TeamRegistrationPage";
 import PlayersPage from "@/pages/PlayersPage";
+import PlayerProfilePage from "@/pages/players/PlayerProfilePage";
+import PlayerRegistrationPage from "@/pages/players/PlayerRegistrationPage";
 import MatchesPage from "@/pages/MatchesPage";
 import MatchCenterPage from "@/pages/MatchCenterPage";
+import MatchReportPage from "@/pages/matches/MatchReportPage";
 import VenuesPage from "@/pages/VenuesPage";
+import VenueDetailPage from "@/pages/venues/VenueDetailPage";
 import RefereesPage from "@/pages/RefereesPage";
+import RefereeProfilePage from "@/pages/referees/RefereeProfilePage";
+import RefereeAssignmentPage from "@/pages/referees/RefereeAssignmentPage";
 import StandingsPage from "@/pages/StandingsPage";
 import StatisticsPage from "@/pages/StatisticsPage";
+import AdvancedStatsPage from "@/pages/statistics/AdvancedStatsPage";
 import ReportsPage from "@/pages/ReportsPage";
 import SettingsPage from "@/pages/SettingsPage";
+import ProfileSettingsPage from "@/pages/settings/ProfileSettingsPage";
+import BillingPage from "@/pages/settings/BillingPage";
+import CalendarPage from "@/pages/CalendarPage";
+import NotificationsPage from "@/pages/NotificationsPage";
+import SuperAdminDashboard from "@/pages/admin/SuperAdminDashboard";
+import SubscriptionManagementPage from "@/pages/admin/SubscriptionManagementPage";
+import PlatformUsersPage from "@/pages/admin/PlatformUsersPage";
+import AuditLogPage from "@/pages/admin/AuditLogPage";
+import ClubManagerDashboard from "@/pages/dashboards/ClubManagerDashboard";
+import LoginPage from "@/pages/auth/LoginPage";
+import RegisterPage from "@/pages/auth/RegisterPage";
+import ForgotPasswordPage from "@/pages/auth/ForgotPasswordPage";
+import PublicTournamentHome from "@/pages/public/PublicTournamentHome";
+import PublicMatchesPage from "@/pages/public/PublicMatchesPage";
+import PublicStandingsPage from "@/pages/public/PublicStandingsPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
+
+const DL = ({ children }: { children: React.ReactNode }) => <DashboardLayout>{children}</DashboardLayout>;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -29,20 +60,77 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DashboardLayout><DashboardPage /></DashboardLayout>} />
-          <Route path="/organizations" element={<DashboardLayout><OrganizationsPage /></DashboardLayout>} />
-          <Route path="/tournaments" element={<DashboardLayout><TournamentsPage /></DashboardLayout>} />
-          <Route path="/tournaments/detail" element={<DashboardLayout><TournamentDetailPage /></DashboardLayout>} />
-          <Route path="/teams" element={<DashboardLayout><TeamsPage /></DashboardLayout>} />
-          <Route path="/players" element={<DashboardLayout><PlayersPage /></DashboardLayout>} />
-          <Route path="/matches" element={<DashboardLayout><MatchesPage /></DashboardLayout>} />
-          <Route path="/matches/center" element={<DashboardLayout><MatchCenterPage /></DashboardLayout>} />
-          <Route path="/venues" element={<DashboardLayout><VenuesPage /></DashboardLayout>} />
-          <Route path="/referees" element={<DashboardLayout><RefereesPage /></DashboardLayout>} />
-          <Route path="/standings" element={<DashboardLayout><StandingsPage /></DashboardLayout>} />
-          <Route path="/statistics" element={<DashboardLayout><StatisticsPage /></DashboardLayout>} />
-          <Route path="/reports" element={<DashboardLayout><ReportsPage /></DashboardLayout>} />
-          <Route path="/settings" element={<DashboardLayout><SettingsPage /></DashboardLayout>} />
+          {/* Auth */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+
+          {/* Public */}
+          <Route path="/public/tournament" element={<PublicTournamentHome />} />
+          <Route path="/public/matches" element={<PublicMatchesPage />} />
+          <Route path="/public/standings" element={<PublicStandingsPage />} />
+
+          {/* Dashboard */}
+          <Route path="/" element={<DL><DashboardPage /></DL>} />
+          <Route path="/calendar" element={<DL><CalendarPage /></DL>} />
+          <Route path="/notifications" element={<DL><NotificationsPage /></DL>} />
+
+          {/* Admin */}
+          <Route path="/admin" element={<DL><SuperAdminDashboard /></DL>} />
+          <Route path="/admin/subscriptions" element={<DL><SubscriptionManagementPage /></DL>} />
+          <Route path="/admin/users" element={<DL><PlatformUsersPage /></DL>} />
+          <Route path="/admin/audit-log" element={<DL><AuditLogPage /></DL>} />
+
+          {/* Organizations */}
+          <Route path="/organizations" element={<DL><OrganizationsPage /></DL>} />
+          <Route path="/organizations/detail" element={<DL><OrganizationDetailPage /></DL>} />
+
+          {/* Tournaments */}
+          <Route path="/tournaments" element={<DL><TournamentsPage /></DL>} />
+          <Route path="/tournaments/detail" element={<DL><TournamentDetailPage /></DL>} />
+          <Route path="/tournaments/create" element={<DL><TournamentCreatePage /></DL>} />
+          <Route path="/tournaments/bracket" element={<DL><TournamentBracketPage /></DL>} />
+          <Route path="/tournaments/schedule" element={<DL><TournamentSchedulePage /></DL>} />
+          <Route path="/tournaments/seasons" element={<DL><SeasonManagementPage /></DL>} />
+
+          {/* Teams */}
+          <Route path="/teams" element={<DL><TeamsPage /></DL>} />
+          <Route path="/teams/detail" element={<DL><TeamDetailPage /></DL>} />
+          <Route path="/teams/register" element={<DL><TeamRegistrationPage /></DL>} />
+
+          {/* Players */}
+          <Route path="/players" element={<DL><PlayersPage /></DL>} />
+          <Route path="/players/profile" element={<DL><PlayerProfilePage /></DL>} />
+          <Route path="/players/register" element={<DL><PlayerRegistrationPage /></DL>} />
+
+          {/* Matches */}
+          <Route path="/matches" element={<DL><MatchesPage /></DL>} />
+          <Route path="/matches/center" element={<DL><MatchCenterPage /></DL>} />
+          <Route path="/matches/report" element={<DL><MatchReportPage /></DL>} />
+
+          {/* Venues */}
+          <Route path="/venues" element={<DL><VenuesPage /></DL>} />
+          <Route path="/venues/detail" element={<DL><VenueDetailPage /></DL>} />
+
+          {/* Referees */}
+          <Route path="/referees" element={<DL><RefereesPage /></DL>} />
+          <Route path="/referees/profile" element={<DL><RefereeProfilePage /></DL>} />
+          <Route path="/referees/assignments" element={<DL><RefereeAssignmentPage /></DL>} />
+
+          {/* Standings & Stats */}
+          <Route path="/standings" element={<DL><StandingsPage /></DL>} />
+          <Route path="/statistics" element={<DL><StatisticsPage /></DL>} />
+          <Route path="/statistics/advanced" element={<DL><AdvancedStatsPage /></DL>} />
+
+          {/* Reports & Settings */}
+          <Route path="/reports" element={<DL><ReportsPage /></DL>} />
+          <Route path="/settings" element={<DL><SettingsPage /></DL>} />
+          <Route path="/settings/profile" element={<DL><ProfileSettingsPage /></DL>} />
+          <Route path="/settings/billing" element={<DL><BillingPage /></DL>} />
+
+          {/* Club Manager */}
+          <Route path="/club-dashboard" element={<DL><ClubManagerDashboard /></DL>} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
