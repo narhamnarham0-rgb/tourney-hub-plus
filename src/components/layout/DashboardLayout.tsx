@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Building2, Trophy, Users, UserCircle,
   Swords, MapPin, Shield, BarChart3, FileText, Settings,
-  ChevronLeft, ChevronRight, Search, Bell, Menu, ListOrdered,
+  ChevronLeft, ChevronRight, Search, Bell, Menu, ListOrdered, CalendarDays,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ const navItems = [
   { label: "Teams", icon: Users, path: "/teams" },
   { label: "Players", icon: UserCircle, path: "/players" },
   { label: "Matches", icon: Swords, path: "/matches" },
+  { label: "Calendar", icon: CalendarDays, path: "/calendar" },
   { label: "Venues", icon: MapPin, path: "/venues" },
   { label: "Referees", icon: Shield, path: "/referees" },
   { label: "Standings", icon: ListOrdered, path: "/standings" },
