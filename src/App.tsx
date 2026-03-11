@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import DashboardLayout from "@/components/layout/DashboardLayout";
+import AdminLayout from "@/components/layout/AdminLayout";
 import DashboardPage from "@/pages/DashboardPage";
 import OrganizationsPage from "@/pages/OrganizationsPage";
 import OrganizationDetailPage from "@/pages/organizations/OrganizationDetailPage";
@@ -36,10 +37,13 @@ import ProfileSettingsPage from "@/pages/settings/ProfileSettingsPage";
 import BillingPage from "@/pages/settings/BillingPage";
 import CalendarPage from "@/pages/CalendarPage";
 import NotificationsPage from "@/pages/NotificationsPage";
-import SuperAdminDashboard from "@/pages/admin/SuperAdminDashboard";
+import AdminDashboardPage from "@/pages/admin/AdminDashboardPage";
+import AdminOrganizationsPage from "@/pages/admin/AdminOrganizationsPage";
 import SubscriptionManagementPage from "@/pages/admin/SubscriptionManagementPage";
 import PlatformUsersPage from "@/pages/admin/PlatformUsersPage";
-import AuditLogPage from "@/pages/admin/AuditLogPage";
+import SystemLogsPage from "@/pages/admin/SystemLogsPage";
+import AdminAnalyticsPage from "@/pages/admin/AdminAnalyticsPage";
+import PlatformSettingsPage from "@/pages/admin/PlatformSettingsPage";
 import ClubManagerDashboard from "@/pages/dashboards/ClubManagerDashboard";
 import LoginPage from "@/pages/auth/LoginPage";
 import RegisterPage from "@/pages/auth/RegisterPage";
@@ -52,6 +56,7 @@ import NotFound from "@/pages/NotFound";
 const queryClient = new QueryClient();
 
 const DL = ({ children }: { children: React.ReactNode }) => <DashboardLayout>{children}</DashboardLayout>;
+const AL = ({ children }: { children: React.ReactNode }) => <AdminLayout>{children}</AdminLayout>;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -70,16 +75,19 @@ const App = () => (
           <Route path="/public/matches" element={<PublicMatchesPage />} />
           <Route path="/public/standings" element={<PublicStandingsPage />} />
 
+          {/* Admin Panel */}
+          <Route path="/admin" element={<AL><AdminDashboardPage /></AL>} />
+          <Route path="/admin/organizations" element={<AL><AdminOrganizationsPage /></AL>} />
+          <Route path="/admin/subscriptions" element={<AL><SubscriptionManagementPage /></AL>} />
+          <Route path="/admin/users" element={<AL><PlatformUsersPage /></AL>} />
+          <Route path="/admin/system-logs" element={<AL><SystemLogsPage /></AL>} />
+          <Route path="/admin/analytics" element={<AL><AdminAnalyticsPage /></AL>} />
+          <Route path="/admin/platform-settings" element={<AL><PlatformSettingsPage /></AL>} />
+
           {/* Dashboard */}
           <Route path="/" element={<DL><DashboardPage /></DL>} />
           <Route path="/calendar" element={<DL><CalendarPage /></DL>} />
           <Route path="/notifications" element={<DL><NotificationsPage /></DL>} />
-
-          {/* Admin */}
-          <Route path="/admin" element={<DL><SuperAdminDashboard /></DL>} />
-          <Route path="/admin/subscriptions" element={<DL><SubscriptionManagementPage /></DL>} />
-          <Route path="/admin/users" element={<DL><PlatformUsersPage /></DL>} />
-          <Route path="/admin/audit-log" element={<DL><AuditLogPage /></DL>} />
 
           {/* Organizations */}
           <Route path="/organizations" element={<DL><OrganizationsPage /></DL>} />
