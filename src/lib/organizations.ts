@@ -210,6 +210,9 @@ const organizationsStorage: Organization[] = [
     foundedYear: 2018,
     plan: "Starter",
     status: "inactive",
+    phone: "+49 30 1234 5678",
+    logoUrl: "",
+    socialLinks: { twitter: "@eurofutsal" },
     metrics: { activeTournaments: 1, totalTeams: 10, totalPlayers: 180, monthlyRevenueUsd: 29, users: 3 },
     metadata: {
       timezone: "Europe/Berlin",
@@ -224,6 +227,8 @@ const organizationsStorage: Organization[] = [
       { id: "efn-m2", name: "Max Weber", role: "Coordinator", email: "max@futsalnet.example.com", status: "invited", lastActiveISO: "2026-02-01T08:00:00.000Z" },
     ],
     tournaments: [{ id: "efn-t1", name: "Euro Futsal Cup", teams: 10, status: "draft" }],
+    recentActivity: [],
+    upcomingMatches: [],
   },
   {
     id: "org-aco",
