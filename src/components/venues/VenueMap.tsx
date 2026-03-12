@@ -133,6 +133,7 @@ export function VenueMap({ venues, center, userPosition, selectedVenueId, classN
       {/* @ts-ignore - react-leaflet typing mismatch */}
       <MapContainer center={mapCenter} zoom={mapState.zoom} className="h-full w-full" scrollWheelZoom>
         <MapStateBridge onChange={setMapState} />
+        {/* @ts-ignore */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
