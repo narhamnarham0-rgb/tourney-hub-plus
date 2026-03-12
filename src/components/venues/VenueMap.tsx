@@ -139,7 +139,6 @@ export function VenueMap({ venues, center, userPosition, selectedVenueId, classN
         />
 
         {userPosition && (
-          {/* @ts-ignore */}
           <Marker position={[userPosition.lat, userPosition.lng]} icon={userIcon}>
             <Popup>
               <div className="font-bold">Your location</div>
