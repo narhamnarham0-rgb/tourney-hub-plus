@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 interface StatusBadgeProps {
-  status: "live" | "upcoming" | "completed" | "delayed" | "active" | "inactive" | "draft";
+  status: "live" | "upcoming" | "completed" | "delayed" | "active" | "inactive" | "draft" | "cancelled";
   label?: string;
 }
 
