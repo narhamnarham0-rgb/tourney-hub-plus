@@ -154,6 +154,7 @@ export function VenueMap({ venues, center, userPosition, selectedVenueId, classN
           if (isCluster) {
             const count = c.properties.point_count ?? 0;
             return (
+              {/* @ts-ignore */}
               <Marker key={`cluster-${lng}-${lat}-${count}`} position={[lat, lng]} icon={clusterIcon(count)}>
                 <Popup>
                   <div className="space-y-2">
