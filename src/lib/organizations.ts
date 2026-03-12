@@ -86,6 +86,9 @@ const organizationsStorage: Organization[] = [
     foundedYear: 2019,
     plan: "Enterprise",
     status: "active",
+    phone: "+1 (212) 555-0147",
+    logoUrl: "",
+    socialLinks: { twitter: "@cityfootball", instagram: "@cityfootball_nyc", facebook: "cityfootballassociation" },
     metrics: { activeTournaments: 5, totalTeams: 48, totalPlayers: 960, monthlyRevenueUsd: 199, users: 12 },
     metadata: {
       timezone: "America/New_York",
