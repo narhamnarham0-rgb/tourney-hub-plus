@@ -130,6 +130,7 @@ export function VenueMap({ venues, center, userPosition, selectedVenueId, classN
 
   return (
     <div className={cn("rounded-3xl border overflow-hidden bg-card shadow-sm", className)} style={{ height: heightPx }}>
+      {/* @ts-ignore - react-leaflet typing mismatch */}
       <MapContainer center={mapCenter} zoom={mapState.zoom} className="h-full w-full" scrollWheelZoom>
         <MapStateBridge onChange={setMapState} />
         <TileLayer
