@@ -27,6 +27,21 @@ export type OrganizationTournament = {
   status: "active" | "upcoming" | "draft";
 };
 
+export type RecentActivity = {
+  id: string;
+  type: "member_joined" | "tournament_created" | "match_completed" | "team_registered" | "setting_changed";
+  description: string;
+  timestampISO: string;
+};
+
+export type UpcomingMatch = {
+  id: string;
+  home: string;
+  away: string;
+  dateISO: string;
+  tournament: string;
+};
+
 export type Organization = {
   id: string;
   name: string;
@@ -36,6 +51,9 @@ export type Organization = {
   foundedYear: number;
   plan: "Starter" | "Pro" | "Enterprise";
   status: OrganizationStatus;
+  phone: string;
+  logoUrl: string;
+  socialLinks: { twitter?: string; instagram?: string; facebook?: string };
   metrics: {
     activeTournaments: number;
     totalTeams: number;
@@ -53,6 +71,8 @@ export type Organization = {
   };
   members: OrganizationMember[];
   tournaments: OrganizationTournament[];
+  recentActivity: RecentActivity[];
+  upcomingMatches: UpcomingMatch[];
 };
 
 const organizationsStorage: Organization[] = [
