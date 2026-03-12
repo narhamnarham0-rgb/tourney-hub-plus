@@ -174,6 +174,9 @@ const organizationsStorage: Organization[] = [
     foundedYear: 2020,
     plan: "Pro",
     status: "active",
+    phone: "+55 11 3456-7890",
+    logoUrl: "",
+    socialLinks: { instagram: "@coparegional_br" },
     metrics: { activeTournaments: 2, totalTeams: 18, totalPlayers: 360, monthlyRevenueUsd: 99, users: 5 },
     metadata: {
       timezone: "America/Sao_Paulo",
@@ -190,6 +193,12 @@ const organizationsStorage: Organization[] = [
     tournaments: [
       { id: "copa-t1", name: "Copa Regional Series A", teams: 10, status: "active" },
       { id: "copa-t2", name: "Copa Regional U21", teams: 8, status: "upcoming" },
+    ],
+    recentActivity: [
+      { id: "copa-a1", type: "tournament_created", description: "Copa Regional U21 announced", timestampISO: "2026-03-05T12:00:00.000Z" },
+    ],
+    upcomingMatches: [
+      { id: "copa-um1", home: "São Paulo FC B", away: "Santos Youth", dateISO: "2026-03-17T19:00:00.000Z", tournament: "Copa Regional Series A" },
     ],
   },
   {
