@@ -13,6 +13,7 @@ const statusMap: Record<string, { className: string; label: string }> = {
   active: { className: "status-badge-active", label: "Active" },
   inactive: { className: "status-badge bg-muted text-muted-foreground", label: "Inactive" },
   draft: { className: "status-badge bg-accent/10 text-accent", label: "Draft" },
+  cancelled: { className: "status-badge bg-destructive/10 text-destructive", label: "Cancelled" },
 };
 
 export function StatusBadge({ status, label }: StatusBadgeProps) {

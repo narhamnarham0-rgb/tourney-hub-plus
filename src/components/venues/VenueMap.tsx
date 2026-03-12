@@ -171,6 +171,7 @@ export function VenueMap({ venues, center, userPosition, selectedVenueId, classN
           const icon = venueIcon(initials(v.name));
           const isSelected = selected?.id === v.id;
           return (
+            {/* @ts-ignore */}
             <Marker key={venueId} position={[v.location.lat, v.location.lng]} icon={icon}>
               <Popup>
                 <div className="space-y-2 min-w-[220px]">
