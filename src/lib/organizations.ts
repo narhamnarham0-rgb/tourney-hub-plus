@@ -239,6 +239,9 @@ const organizationsStorage: Organization[] = [
     foundedYear: 2016,
     plan: "Enterprise",
     status: "active",
+    phone: "+81 3-1234-5678",
+    logoUrl: "",
+    socialLinks: { twitter: "@asiancuporg", instagram: "@asiancup_official", facebook: "asiancuporg" },
     metrics: { activeTournaments: 4, totalTeams: 34, totalPlayers: 720, monthlyRevenueUsd: 199, users: 10 },
     metadata: {
       timezone: "Asia/Tokyo",
@@ -257,6 +260,14 @@ const organizationsStorage: Organization[] = [
       { id: "aco-t2", name: "East Division League", teams: 12, status: "active" },
       { id: "aco-t3", name: "U18 Cup", teams: 20, status: "upcoming" },
       { id: "aco-t4", name: "Futsal Invitational", teams: 8, status: "draft" },
+    ],
+    recentActivity: [
+      { id: "aco-a1", type: "match_completed", description: "Asian Cup: Tokyo FC 1 - 0 Osaka United", timestampISO: "2026-03-10T12:00:00.000Z" },
+      { id: "aco-a2", type: "team_registered", description: "Kyoto Stars registered for U18 Cup", timestampISO: "2026-03-08T08:00:00.000Z" },
+    ],
+    upcomingMatches: [
+      { id: "aco-um1", home: "Yokohama FC", away: "Nagoya Grampus", dateISO: "2026-03-14T13:00:00.000Z", tournament: "Asian Cup 2026" },
+      { id: "aco-um2", home: "Sapporo United", away: "Fukuoka Hawks", dateISO: "2026-03-16T10:00:00.000Z", tournament: "East Division League" },
     ],
   },
 ];
