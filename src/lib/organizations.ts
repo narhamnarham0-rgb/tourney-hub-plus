@@ -113,6 +113,18 @@ const organizationsStorage: Organization[] = [
       { id: "cfa-t4", name: "Summer Invitational", teams: 8, status: "draft" },
       { id: "cfa-t5", name: "Women's Cup 2026", teams: 10, status: "active" },
     ],
+    recentActivity: [
+      { id: "cfa-a1", type: "tournament_created", description: "Women's Cup 2026 tournament created", timestampISO: "2026-03-10T14:00:00.000Z" },
+      { id: "cfa-a2", type: "member_joined", description: "Alicia Park invited as Analyst", timestampISO: "2026-03-08T09:30:00.000Z" },
+      { id: "cfa-a3", type: "match_completed", description: "Premier Cup: Eagles 3 - 1 Hawks", timestampISO: "2026-03-07T20:45:00.000Z" },
+      { id: "cfa-a4", type: "team_registered", description: "Riverside FC registered for City League", timestampISO: "2026-03-06T11:00:00.000Z" },
+      { id: "cfa-a5", type: "setting_changed", description: "Billing plan upgraded to Enterprise", timestampISO: "2026-03-01T08:00:00.000Z" },
+    ],
+    upcomingMatches: [
+      { id: "cfa-um1", home: "Eagles FC", away: "Lions United", dateISO: "2026-03-14T18:00:00.000Z", tournament: "Premier Cup 2026" },
+      { id: "cfa-um2", home: "Metro Stars", away: "Harbor City", dateISO: "2026-03-15T15:30:00.000Z", tournament: "City League Season 8" },
+      { id: "cfa-um3", home: "Queens Park", away: "Bronx United", dateISO: "2026-03-16T14:00:00.000Z", tournament: "Women's Cup 2026" },
+    ],
   },
   {
     id: "org-nyl",
@@ -123,6 +135,9 @@ const organizationsStorage: Organization[] = [
     foundedYear: 2017,
     plan: "Pro",
     status: "active",
+    phone: "+44 20 7946 0958",
+    logoUrl: "",
+    socialLinks: { twitter: "@youthleague_uk", instagram: "@nyl_official" },
     metrics: { activeTournaments: 3, totalTeams: 26, totalPlayers: 520, monthlyRevenueUsd: 99, users: 8 },
     metadata: {
       timezone: "Europe/London",
@@ -141,6 +156,13 @@ const organizationsStorage: Organization[] = [
       { id: "nyl-t1", name: "U16 National League", teams: 14, status: "active" },
       { id: "nyl-t2", name: "U14 Development Cup", teams: 12, status: "active" },
       { id: "nyl-t3", name: "Winter Youth Series", teams: 10, status: "upcoming" },
+    ],
+    recentActivity: [
+      { id: "nyl-a1", type: "match_completed", description: "U16 League: Chelsea Youth 2 - 2 Arsenal Academy", timestampISO: "2026-03-09T17:00:00.000Z" },
+      { id: "nyl-a2", type: "team_registered", description: "Tottenham U14 registered for Development Cup", timestampISO: "2026-03-07T10:00:00.000Z" },
+    ],
+    upcomingMatches: [
+      { id: "nyl-um1", home: "Liverpool Academy", away: "Man City Youth", dateISO: "2026-03-15T14:00:00.000Z", tournament: "U16 National League" },
     ],
   },
   {
