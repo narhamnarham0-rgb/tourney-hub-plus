@@ -20,10 +20,11 @@ type ClusterPointProps = {
   title: string;
 };
 
-type ClusterPoint = GeoJSON.Feature<
-  GeoJSON.Point,
-  ClusterPointProps & { point_count?: number; point_count_abbreviated?: number }
->;
+type ClusterPoint = {
+  type: "Feature";
+  properties: ClusterPointProps & { point_count?: number; point_count_abbreviated?: number };
+  geometry: { type: "Point"; coordinates: [number, number] };
+};
 
 const markerIcon = (label: string, className: string) =>
   L.divIcon({
