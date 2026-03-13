@@ -1,9 +1,8 @@
 import React from "react";
 import { ArrowLeft, Shield, ChevronRight, CheckCircle2, UserPlus } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { PlayerRegistrationForm } from "@/modules/players/components/PlayerRegistrationForm";
+import { PlayerRegistrationForm, PlayerFormData } from "@/modules/players/components/PlayerRegistrationForm";
 import { playerService } from "@/modules/players/services/playerService";
-import { CreatePlayerInput } from "@/modules/players/types/player";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +14,7 @@ export default function PlayerRegistrationPage() {
     navigate("/players");
   };
 
-  const handleFinalSubmit = async (data: CreatePlayerInput) => {
+  const handleFinalSubmit = async (data: PlayerFormData) => {
     try {
       await playerService.createPlayer(data);
       toast.success("Player registered successfully!", {

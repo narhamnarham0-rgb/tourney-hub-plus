@@ -21,13 +21,7 @@ export default function PublicPlayerProfilePage() {
   });
 
   const player = playerQuery.data;
-
-  const headline = useMemo(() => {
-    if (!player) return "";
-    const goals = player.stats?.goals ?? 0;
-    const assists = player.stats?.assists ?? 0;
-    return `${goals} goals · ${assists} assists`;
-  }, [player]);
+  const teamName = player?.teams?.name ?? "Unassigned";
 
   if (!id) return null;
 
@@ -50,7 +44,7 @@ export default function PublicPlayerProfilePage() {
           <div className="text-xl font-black">Player not found</div>
           <div className="text-sm text-muted-foreground mt-2">The requested player does not exist.</div>
           <div className="mt-6">
-            <Link to="/public/players" className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-2xl px-5 font-black bg-secondary text-white">
+            <Link to="/public/players" className="inline-flex h-12 min-h-[48px] items-center justify-center rounded-2xl px-5 font-black bg-secondary text-secondary-foreground">
               Browse players
             </Link>
           </div>
@@ -65,7 +59,7 @@ export default function PublicPlayerProfilePage() {
     <PublicLayout
       seo={{
         title: `${player.name} · Players · Premier Cup 2026`,
-        description: `Player profile and stats for ${player.name} (${player.clubName}).`,
+        description: `Player profile for ${player.name} (${teamName}).`,
         imageUrl: `${window.location.origin}/placeholder.svg`,
       }}
       tournamentName="Premier Cup 2026"
@@ -80,32 +74,30 @@ export default function PublicPlayerProfilePage() {
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-muted-foreground">Player</div>
               <h1 className="text-2xl sm:text-3xl font-black tracking-tight">{player.name}</h1>
-              <div className="text-sm text-muted-foreground font-medium">{player.clubName} · {headline}</div>
+              <div className="text-sm text-muted-foreground font-medium">{teamName}</div>
             </div>
           </div>
-          <ShareButton title={`${player.name} · Premier Cup 2026`} text={`Player profile · ${player.clubName}`} url={shareUrl} />
+          <ShareButton title={`${player.name} · Premier Cup 2026`} text={`Player profile · ${teamName}`} url={shareUrl} />
         </div>
 
         <section className="bg-card rounded-3xl border p-6 sm:p-8">
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="flex-1 space-y-4">
               <div className="flex flex-wrap gap-2">
-                <Badge variant="outline" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{player.primaryPosition}</Badge>
-                <Badge variant="secondary" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{player.ageCategory}</Badge>
+                <Badge variant="outline" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{player.primary_position}</Badge>
+                <Badge variant="secondary" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{player.age_category}</Badge>
                 <Badge variant="outline" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{player.nationality}</Badge>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {[
-                  { label: "Matches", value: player.stats?.matchesPlayed ?? 0, icon: Trophy },
-                  { label: "Goals", value: player.stats?.goals ?? 0, icon: Shield },
-                  { label: "Assists", value: player.stats?.assists ?? 0, icon: BarChart3 },
-                  { label: "Rating", value: (player.stats?.averageRating ?? 0).toFixed(1), icon: User },
+                  { label: "Position", value: player.primary_position },
+                  { label: "Category", value: player.age_category },
+                  { label: "Jersey", value: player.jersey_number ? `#${player.jersey_number}` : "—" },
                 ].map((s) => (
                   <div key={s.label} className="rounded-2xl border bg-muted/20 p-4">
                     <div className="flex items-center justify-between">
                       <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{s.label}</div>
-                      <s.icon className="h-4 w-4 text-secondary" aria-hidden="true" />
                     </div>
                     <div className="text-lg font-black tabular-nums mt-1">{s.value}</div>
                   </div>
@@ -127,16 +119,6 @@ export default function PublicPlayerProfilePage() {
                   </div>
                 </div>
               </div>
-
-              <div className="rounded-3xl border bg-background/60 p-6">
-                <div className="text-xs font-black uppercase tracking-widest text-muted-foreground">Highlights</div>
-                <div className="mt-3 space-y-2">
-                  {(player.stats?.careerHighlights ?? []).slice(0, 5).map((h, idx) => (
-                    <div key={idx} className="text-sm font-bold">{h}</div>
-                  ))}
-                  {(player.stats?.careerHighlights ?? []).length === 0 ? <div className="text-sm text-muted-foreground">No highlights yet.</div> : null}
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -144,4 +126,3 @@ export default function PublicPlayerProfilePage() {
     </PublicLayout>
   );
 }
-

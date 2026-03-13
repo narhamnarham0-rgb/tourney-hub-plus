@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Plus, Download, LayoutGrid, List, RefreshCw, FileText, ChevronRight, ChevronLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { playerService } from "@/modules/players/services/playerService";
-import { Player, AgeCategory, Position } from "@/modules/players/types/player";
 import { PlayerFilters } from "@/modules/players/components/PlayerFilters";
 import { PlayerTable } from "@/modules/players/components/PlayerTable";
 import { DigitalPlayerCard } from "@/modules/players/components/DigitalPlayerCard";
@@ -20,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function PlayersPage() {
   const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -30,8 +29,8 @@ export default function PlayersPage() {
   // Filters State
   const [search, setSearch] = useState("");
   const [selectedClubs, setSelectedClubs] = useState<string[]>([]);
-  const [selectedAges, setSelectedAges] = useState<AgeCategory[]>([]);
-  const [selectedPositions, setSelectedPositions] = useState<Position[]>([]);
+  const [selectedAges, setSelectedAges] = useState<string[]>([]);
+  const [selectedPositions, setSelectedPositions] = useState<string[]>([]);
   const [selectedPlayers, setSelectedPlayers] = useState<string[]>([]);
   
   // Sorting State
@@ -43,9 +42,8 @@ export default function PlayersPage() {
     try {
       const result = await playerService.getPlayers(page, limit, {
         search,
-        clubId: selectedClubs,
-        ageCategory: selectedAges,
-        position: selectedPositions,
+        ageCategory: selectedAges.length > 0 ? selectedAges : undefined,
+        position: selectedPositions.length > 0 ? selectedPositions : undefined,
         sortBy,
         sortOrder,
       });
@@ -99,21 +97,16 @@ export default function PlayersPage() {
 
   const handleExport = (type: 'csv' | 'pdf') => {
     if (type === 'csv') {
-      const headers = ["ID", "Name", "Club", "Age Category", "Position", "Nationality", "Status", "Matches", "Goals", "Assists", "Rating"];
+      const headers = ["ID", "Name", "Age Category", "Position", "Nationality", "Status"];
       const csvContent = [
         headers.join(","),
         ...players.map(p => [
           p.id,
           p.name,
-          p.clubName,
-          p.ageCategory,
-          p.primaryPosition,
+          p.age_category,
+          p.primary_position,
           p.nationality,
           p.status,
-          p.stats.matchesPlayed,
-          p.stats.goals,
-          p.stats.assists,
-          p.stats.averageRating.toFixed(2)
         ].join(","))
       ].join("\n");
 
@@ -130,7 +123,6 @@ export default function PlayersPage() {
       toast.info("PDF Exporting...", {
         description: "PDF report generation is being prepared with high-fidelity formatting."
       });
-      // In a real app, use jspdf or a server-side generator
     }
   };
 
@@ -175,7 +167,7 @@ export default function PlayersPage() {
           </DropdownMenu>
           
           <Link to="/players/register">
-            <Button className="h-11 px-6 bg-secondary hover:bg-secondary/90 text-white font-black rounded-2xl gap-2 shadow-lg shadow-secondary/20 transition-all hover:scale-105 active:scale-95">
+            <Button className="h-11 px-6 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-black rounded-2xl gap-2 shadow-lg shadow-secondary/20 transition-all hover:scale-105 active:scale-95">
               <Plus className="h-5 w-5" /> REGISTER PLAYER
             </Button>
           </Link>
@@ -233,9 +225,9 @@ export default function PlayersPage() {
           selectedClubs={selectedClubs}
           onClubsChange={(v) => { setSelectedClubs(v); setPage(1); }}
           selectedAges={selectedAges}
-          onAgesChange={(v) => { setSelectedAges(v); setPage(1); }}
+          onAgesChange={(v) => { setSelectedAges(v as any); setPage(1); }}
           selectedPositions={selectedPositions}
-          onPositionsChange={(v) => { setSelectedPositions(v); setPage(1); }}
+          onPositionsChange={(v) => { setSelectedPositions(v as any); setPage(1); }}
           onClearAll={handleClearAll}
         />
       </div>
