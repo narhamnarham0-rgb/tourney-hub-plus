@@ -224,9 +224,9 @@ export default function PlayersPage() {
           onSearchChange={(v) => { setSearch(v); setPage(1); }}
           selectedClubs={selectedClubs}
           onClubsChange={(v) => { setSelectedClubs(v); setPage(1); }}
-          selectedAges={selectedAges}
+          selectedAges={selectedAges as any}
           onAgesChange={(v) => { setSelectedAges(v as any); setPage(1); }}
-          selectedPositions={selectedPositions}
+          selectedPositions={selectedPositions as any}
           onPositionsChange={(v) => { setSelectedPositions(v as any); setPage(1); }}
           onClearAll={handleClearAll}
         />
