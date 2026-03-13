@@ -125,7 +125,7 @@ export function DashboardTimeline() {
                 </div>
                 <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-secondary transition-colors" />
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <div className="py-12 text-center border-2 border-dashed rounded-xl flex flex-col items-center justify-center text-muted-foreground">

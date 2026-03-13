@@ -141,7 +141,7 @@ export default function DashboardPage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold">My Active Tournaments</h2>
-              <Button variant="link" className="text-secondary font-bold">View All</Button>
+              <Button variant="link" className="text-secondary font-bold" asChild><Link to="/tournaments">View All</Link></Button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
               {activeTournaments.map((tournament) => (
