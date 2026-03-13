@@ -24,7 +24,7 @@ export default function PublicPlayersPage() {
 
   const sorted = useMemo(() => {
     const items = playersQuery.data ?? [];
-    return [...items].sort((a, b) => (b.stats?.goals ?? 0) - (a.stats?.goals ?? 0));
+    return [...items].sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""));
   }, [playersQuery.data]);
 
   return (
@@ -40,7 +40,7 @@ export default function PublicPlayersPage() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div className="space-y-1">
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight">Players</h1>
-            <p className="text-sm text-muted-foreground">Search by name, club, or player ID.</p>
+            <p className="text-sm text-muted-foreground">Search by name or player ID.</p>
           </div>
           <ShareButton title="Premier Cup 2026 Players" text="Player profiles and stats" url={`${window.location.origin}/public/players`} />
         </div>
@@ -75,10 +75,10 @@ export default function PublicPlayersPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="text-lg font-black truncate">{p.name}</div>
-                    <div className="text-xs font-bold text-muted-foreground truncate">{p.clubName}</div>
+                    <div className="text-xs font-bold text-muted-foreground truncate">{(p as any).teams?.name ?? "Unassigned"}</div>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
-                      <Badge variant="outline" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{p.primaryPosition}</Badge>
-                      <Badge variant="secondary" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{p.ageCategory}</Badge>
+                      <Badge variant="outline" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{p.primary_position}</Badge>
+                      <Badge variant="secondary" className="rounded-2xl font-black text-[10px] uppercase tracking-widest">{p.age_category}</Badge>
                     </div>
                   </div>
                   <div className="h-12 w-12 rounded-3xl bg-muted flex items-center justify-center text-sm font-black text-secondary shrink-0">
@@ -88,16 +88,16 @@ export default function PublicPlayersPage() {
 
                 <div className="mt-4 grid grid-cols-3 gap-3">
                   <div className="rounded-2xl border bg-muted/20 p-3">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Goals</div>
-                    <div className="text-sm font-black tabular-nums text-secondary">{p.stats?.goals ?? 0}</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Position</div>
+                    <div className="text-sm font-black tabular-nums text-secondary">{p.primary_position}</div>
                   </div>
                   <div className="rounded-2xl border bg-muted/20 p-3">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Assists</div>
-                    <div className="text-sm font-black tabular-nums">{p.stats?.assists ?? 0}</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Category</div>
+                    <div className="text-sm font-black tabular-nums">{p.age_category}</div>
                   </div>
                   <div className="rounded-2xl border bg-muted/20 p-3">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Apps</div>
-                    <div className="text-sm font-black tabular-nums">{p.stats?.matchesPlayed ?? 0}</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Jersey</div>
+                    <div className="text-sm font-black tabular-nums">{p.jersey_number ? `#${p.jersey_number}` : "—"}</div>
                   </div>
                 </div>
               </Link>
@@ -112,4 +112,3 @@ export default function PublicPlayersPage() {
     </PublicLayout>
   );
 }
-

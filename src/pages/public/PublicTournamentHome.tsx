@@ -56,9 +56,9 @@ export default function PublicTournamentHome() {
   const topScorers = useMemo(() => {
     const players = scorersQuery.data ?? [];
     return [...players]
-      .sort((a, b) => (b.stats?.goals ?? 0) - (a.stats?.goals ?? 0))
+      .sort((a, b) => a.name.localeCompare(b.name))
       .slice(0, 10)
-      .map((p) => ({ id: p.id, name: p.name, team: p.clubName, goals: p.stats?.goals ?? 0 }));
+      .map((p) => ({ id: p.id, name: p.name, team: (p as any).teams?.name ?? "Unassigned", goals: 0 }));
   }, [scorersQuery.data]);
 
   return (

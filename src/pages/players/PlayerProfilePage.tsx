@@ -18,7 +18,6 @@ import {
   Phone
 } from "lucide-react";
 import { playerService } from "@/modules/players/services/playerService";
-import { Player } from "@/modules/players/types/player";
 import { ProfileInfoTab } from "@/modules/players/components/ProfileInfoTab";
 import { ProfileStatsTab } from "@/modules/players/components/ProfileStatsTab";
 import { ProfileDocsTab } from "@/modules/players/components/ProfileDocsTab";
@@ -50,7 +49,7 @@ const tabs = [
 export default function PlayerProfilePage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [player, setPlayer] = useState<Player | null>(null);
+  const [player, setPlayer] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("info");
 
@@ -94,6 +93,8 @@ export default function PlayerProfilePage() {
 
   if (!player) return null;
 
+  const teamName = player.teams?.name ?? "Unassigned";
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "info": return <ProfileInfoTab player={player} />;
@@ -128,7 +129,7 @@ export default function PlayerProfilePage() {
           <Button variant="outline" className="h-11 px-5 rounded-2xl font-bold gap-2 hover:bg-muted/50 transition-all">
             <Share2 className="h-4 w-4 text-secondary" /> SHARE
           </Button>
-          <Button className="h-11 px-6 bg-secondary hover:bg-secondary/90 text-white font-black rounded-2xl gap-2 shadow-lg shadow-secondary/20 transition-all hover:scale-105 active:scale-95">
+          <Button className="h-11 px-6 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-black rounded-2xl gap-2 shadow-lg shadow-secondary/20 transition-all hover:scale-105 active:scale-95">
             <Edit2 className="h-4 w-4" /> EDIT PROFILE
           </Button>
         </div>
@@ -147,13 +148,13 @@ export default function PlayerProfilePage() {
             <div className="relative group/avatar">
               <div className="absolute inset-0 bg-secondary blur-2xl opacity-20 animate-pulse" />
               <Avatar className="h-40 w-40 rounded-[2.5rem] border-4 border-muted group-hover/avatar:border-secondary/30 transition-all duration-500 relative z-10">
-                <AvatarImage src={player.photoUrl} alt={player.name} className="object-cover" />
+                <AvatarImage src={player.photo_url} alt={player.name} className="object-cover" />
                 <AvatarFallback className="bg-secondary/10 text-secondary font-black text-4xl">
-                  {player.name.split(' ').map(n => n[0]).join('')}
+                  {player.name.split(' ').map((n: string) => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
-              <div className="absolute -bottom-3 -right-3 bg-secondary text-white text-[10px] font-black px-4 py-2 rounded-2xl shadow-xl border-4 border-background relative z-20">
-                #{player.id.split('-').pop()}
+              <div className="absolute -bottom-3 -right-3 bg-secondary text-secondary-foreground text-[10px] font-black px-4 py-2 rounded-2xl shadow-xl border-4 border-background relative z-20">
+                #{player.jersey_number ?? "—"}
               </div>
             </div>
             
@@ -168,15 +169,15 @@ export default function PlayerProfilePage() {
                 </div>
                 <div className="flex flex-wrap items-center gap-6 text-muted-foreground font-bold">
                   <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-secondary" /> {player.clubName}
+                    <Shield className="h-4 w-4 text-secondary" /> {teamName}
                   </div>
                   <div className="h-1 w-1 rounded-full bg-muted-foreground/30" />
                   <div className="flex items-center gap-2">
-                    <User className="h-4 w-4 text-secondary" /> {player.primaryPosition}
+                    <User className="h-4 w-4 text-secondary" /> {player.primary_position}
                   </div>
                   <div className="h-1 w-1 rounded-full bg-muted-foreground/30" />
                   <div className="flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-secondary" /> {player.ageCategory}
+                    <Activity className="h-4 w-4 text-secondary" /> {player.age_category}
                   </div>
                 </div>
               </div>
@@ -215,12 +216,12 @@ export default function PlayerProfilePage() {
             {/* Performance Snapshot */}
             <div className="grid grid-cols-2 gap-4 w-full lg:w-[320px]">
               <div className="p-5 rounded-[2rem] bg-muted/30 border border-muted/50 text-center flex flex-col items-center justify-center transition-all hover:bg-muted/50 group/stat">
-                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-1 group-hover/stat:text-secondary transition-colors">Avg. Rating</p>
-                <p className="text-3xl font-black">{player.stats.averageRating.toFixed(1)}</p>
+                <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest mb-1 group-hover/stat:text-secondary transition-colors">Position</p>
+                <p className="text-lg font-black">{player.primary_position}</p>
               </div>
               <div className="p-5 rounded-[2rem] bg-secondary/10 border border-secondary/20 text-center flex flex-col items-center justify-center transition-all hover:bg-secondary/20 group/stat">
-                <p className="text-[10px] font-black text-secondary uppercase tracking-widest mb-1 group-hover/stat:text-secondary/80 transition-colors">Matches</p>
-                <p className="text-3xl font-black text-secondary">{player.stats.matchesPlayed}</p>
+                <p className="text-[10px] font-black text-secondary uppercase tracking-widest mb-1 group-hover/stat:text-secondary/80 transition-colors">Jersey</p>
+                <p className="text-3xl font-black text-secondary">#{player.jersey_number ?? "—"}</p>
               </div>
             </div>
           </div>
