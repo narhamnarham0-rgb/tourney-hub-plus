@@ -3,6 +3,7 @@ import { Calendar, Filter, ChevronLeft, ChevronRight, Clock, MapPin, Trophy } fr
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 interface Match {
   id: string;
