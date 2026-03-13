@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { 
   MoreVertical, 
   Trash2, 
@@ -14,7 +14,7 @@ import {
   ArrowDown,
   Shield
 } from "lucide-react";
-import { Player } from "../types/player";
+import { Tables } from "@/integrations/supabase/types";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -29,8 +29,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
+type DbPlayer = Tables<"players"> & { team_name?: string };
+
 interface PlayerTableProps {
-  players: Player[];
+  players: DbPlayer[];
   total: number;
   page: number;
   totalPages: number;
@@ -156,10 +158,10 @@ export function PlayerTable({
                 </th>
                 <th 
                   className="px-6 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-widest cursor-pointer hover:text-foreground transition-colors hidden lg:table-cell"
-                  onClick={() => onSort('clubName')}
+                  onClick={() => onSort('team_name')}
                 >
                   <div className="flex items-center gap-2">
-                    CLUB <SortIcon field="clubName" />
+                    TEAM <SortIcon field="team_name" />
                   </div>
                 </th>
                 <th className="px-6 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-widest hidden sm:table-cell">POSITION</th>
@@ -188,14 +190,14 @@ export function PlayerTable({
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
                       <Avatar className="h-10 w-10 rounded-xl border-2 border-muted group-hover:border-secondary/30 transition-all">
-                        <AvatarImage src={player.photoUrl} alt={player.name} className="object-cover" />
+                        <AvatarImage src={player.photo_url || undefined} alt={player.name} className="object-cover" />
                         <AvatarFallback className="bg-secondary/10 text-secondary font-black text-xs">
                           {player.name.split(" ").map(n => n[0]).join("")}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex flex-col">
                         <span className="font-black text-sm group-hover:text-secondary transition-colors truncate max-w-[150px] sm:max-w-none">{player.name}</span>
-                        <span className="text-[10px] font-mono font-bold text-muted-foreground">{player.id}</span>
+                        <span className="text-[10px] font-mono font-bold text-muted-foreground">{player.id.slice(0, 8)}</span>
                       </div>
                     </div>
                   </td>
@@ -204,17 +206,17 @@ export function PlayerTable({
                       <div className="h-6 w-6 rounded-lg bg-muted flex items-center justify-center">
                         <Shield className="h-3 w-3 text-secondary" />
                       </div>
-                      <span className="font-bold text-sm text-muted-foreground">{player.clubName}</span>
+                      <span className="font-bold text-sm text-muted-foreground">{player.team_name || "—"}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 hidden sm:table-cell">
                     <Badge variant="outline" className="font-black text-[9px] uppercase tracking-widest rounded-lg px-2 py-0.5 border-muted-foreground/20">
-                      {player.primaryPosition}
+                      {player.primary_position || "—"}
                     </Badge>
                   </td>
                   <td className="px-6 py-4 hidden xl:table-cell">
                     <span className="text-xs font-black text-muted-foreground uppercase tracking-widest">
-                      {player.ageCategory}
+                      {player.age_category || "—"}
                     </span>
                   </td>
                   <td className="px-6 py-4">
@@ -264,7 +266,7 @@ export function PlayerTable({
           </table>
         </div>
 
-        {/* Optimized Pagination */}
+        {/* Pagination */}
         <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t bg-muted/20 gap-4">
           <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest">
             Showing <span className="text-foreground">{Math.min(total, (page - 1) * limit + 1)}-{Math.min(total, page * limit)}</span> of <span className="text-foreground">{total}</span> Players
