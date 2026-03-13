@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  LayoutDashboard, Building2, Trophy, Users, UserCircle,
+  LayoutDashboard, Trophy, Users, UserCircle,
   Swords, MapPin, Shield, BarChart3, FileText, Settings,
   ChevronLeft, ChevronRight, Search, Bell, Menu, ListOrdered, CalendarDays,
   Image as ImageIcon, LogOut, User, Settings2
@@ -28,7 +28,7 @@ import {
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/" },
-  { label: "Organizations", icon: Building2, path: "/organizations" },
+  
   { label: "Tournaments", icon: Trophy, path: "/tournaments" },
   { label: "Teams", icon: Users, path: "/teams" },
   { label: "Players", icon: UserCircle, path: "/players" },
