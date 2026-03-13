@@ -96,14 +96,16 @@ export default function DashboardPage() {
           value={dashboardStats.activeTournaments || 0} 
           change="+1 vs last month" 
           changeType="positive" 
-          icon={Trophy} 
+          icon={Trophy}
+          href="/tournaments"
         />
         <StatCard 
           title="Registered Teams" 
           value={dashboardStats.registeredTeams || 0} 
           change="Breakdown by tourney" 
           changeType="neutral" 
-          icon={Users} 
+          icon={Users}
+          href="/teams"
         />
         <StatCard 
           title="Matches Today" 
@@ -111,14 +113,16 @@ export default function DashboardPage() {
           change={`${dashboardStats.liveMatches || 0} live at National Stadium`} 
           changeType="positive" 
           icon={Swords} 
-          iconColor="bg-destructive/10" 
+          iconColor="bg-destructive/10"
+          href="/matches"
         />
         <StatCard 
           title="Upcoming (7 Days)" 
           value={14} 
           change="Next: United vs Dynamo" 
           changeType="neutral" 
-          icon={Calendar} 
+          icon={Calendar}
+          href="/calendar"
         />
       </div>
 
