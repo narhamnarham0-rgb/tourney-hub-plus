@@ -22,11 +22,11 @@ const DL = ({ children }: { children: React.ReactNode }) => (
   </ProtectedRoute>
 );
 const AL = ({ children }: { children: React.ReactNode }) => (
-  <ProtectedRoute>
+  <SuperAdminRoute>
     <RealtimeProvider>
       <AdminLayout>{children}</AdminLayout>
     </RealtimeProvider>
-  </ProtectedRoute>
+  </SuperAdminRoute>
 );
 
 // Auth
