@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Trophy, Eye, EyeOff, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
 
 export default function RegisterPage() {
