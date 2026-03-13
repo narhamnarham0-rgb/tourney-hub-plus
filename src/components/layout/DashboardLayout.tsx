@@ -28,7 +28,7 @@ import {
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/" },
-  { label: "Organizations", icon: Building2, path: "/organizations" },
+  
   { label: "Tournaments", icon: Trophy, path: "/tournaments" },
   { label: "Teams", icon: Users, path: "/teams" },
   { label: "Players", icon: UserCircle, path: "/players" },
