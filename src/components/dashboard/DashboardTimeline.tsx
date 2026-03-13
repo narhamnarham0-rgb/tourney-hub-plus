@@ -90,8 +90,9 @@ export function DashboardTimeline() {
       <div className="space-y-3">
         {filteredMatches.length > 0 ? (
           filteredMatches.map((match) => (
-            <div 
-              key={match.id} 
+            <Link 
+              key={match.id}
+              to={`/matches/${match.id}`}
               className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl border bg-background hover:border-secondary transition-all cursor-pointer group gap-4"
             >
               <div className="flex items-center gap-4">
