@@ -81,10 +81,8 @@ const activityIcon = (type: string) => {
 const quickActions = [
   { label: "Create Tournament", icon: Trophy, color: "bg-secondary/10 text-secondary" },
   { label: "Register Team", icon: Users, color: "bg-info/10 text-info" },
-  { label: "Invite Member", icon: UserPlus, color: "bg-primary/10 text-primary" },
-  { label: "View Schedule", icon: CalendarPlus, color: "bg-accent/10 text-accent" },
-  { label: "Generate Report", icon: FileText, color: "bg-muted-foreground/10 text-muted-foreground" },
-  { label: "Manage Subscription", icon: CreditCard, color: "bg-destructive/10 text-destructive" },
+  { label: "Generate Schedule", icon: CalendarPlus, color: "bg-accent/10 text-accent" },
+  { label: "Add Venue", icon: MapPin, color: "bg-destructive/10 text-destructive" },
 ];
 
 export default function OrganizationDetailPage() {
