@@ -314,7 +314,7 @@ export default function OrganizationDetailPage() {
       {/* Quick Actions */}
       <section>
         <h2 className="text-sm font-black uppercase tracking-widest text-muted-foreground mb-3">Quick Actions</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {quickActions.map((action) => (
             <button
               key={action.label}
