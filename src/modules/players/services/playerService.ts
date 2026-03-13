@@ -26,10 +26,10 @@ export const playerService = {
       query = query.eq("team_id", filters.teamId);
     }
     if (filters?.ageCategory && filters.ageCategory.length > 0) {
-      query = query.in("age_category", filters.ageCategory);
+      query = query.in("age_category", filters.ageCategory as any);
     }
     if (filters?.position && filters.position.length > 0) {
-      query = query.in("primary_position", filters.position);
+      query = query.in("primary_position", filters.position as any);
     }
 
     const sortCol = filters?.sortBy || "created_at";
