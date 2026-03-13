@@ -293,10 +293,10 @@ export default function OrganizationDetailPage() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-[520px]">
               {[
-                { label: "Tournaments", value: org.metrics.activeTournaments, icon: Trophy },
-                { label: "Teams", value: org.metrics.totalTeams, icon: Shield },
-                { label: "Players", value: org.metrics.totalPlayers, icon: Users },
-                { label: "MRR", value: `$${org.metrics.monthlyRevenueUsd}/mo`, icon: CreditCard },
+                { label: "Active Tournaments", value: org.metrics.activeTournaments, icon: Trophy },
+                { label: "Registered Teams", value: org.metrics.totalTeams, icon: Shield },
+                { label: "Matches Today", value: org.upcomingMatches?.filter(m => new Date(m.dateISO).toDateString() === new Date().toDateString()).length ?? 0, icon: Swords },
+                { label: "Upcoming Matches", value: org.upcomingMatches?.length ?? 0, icon: Calendar },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-white/15 bg-white/10 p-4">
                   <div className="flex items-center justify-between">
