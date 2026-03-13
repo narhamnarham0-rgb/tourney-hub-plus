@@ -7,6 +7,7 @@ import { DashboardTimeline } from "@/components/dashboard/DashboardTimeline";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useRealtime } from "@/modules/realtime/hooks/useRealtime";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
