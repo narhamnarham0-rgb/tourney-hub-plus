@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import AdminLayout from "@/components/layout/AdminLayout";
 import ProtectedRoute from "@/components/layout/ProtectedRoute";
+import SuperAdminRoute from "@/components/layout/SuperAdminRoute";
 import NotFound from "@/pages/NotFound";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { RealtimeProvider } from "@/modules/realtime/hooks/useRealtime";
@@ -21,11 +22,11 @@ const DL = ({ children }: { children: React.ReactNode }) => (
   </ProtectedRoute>
 );
 const AL = ({ children }: { children: React.ReactNode }) => (
-  <ProtectedRoute>
+  <SuperAdminRoute>
     <RealtimeProvider>
       <AdminLayout>{children}</AdminLayout>
     </RealtimeProvider>
-  </ProtectedRoute>
+  </SuperAdminRoute>
 );
 
 // Auth
