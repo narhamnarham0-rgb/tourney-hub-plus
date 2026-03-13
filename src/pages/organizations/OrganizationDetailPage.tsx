@@ -81,10 +81,8 @@ const activityIcon = (type: string) => {
 const quickActions = [
   { label: "Create Tournament", icon: Trophy, color: "bg-secondary/10 text-secondary" },
   { label: "Register Team", icon: Users, color: "bg-info/10 text-info" },
-  { label: "Invite Member", icon: UserPlus, color: "bg-primary/10 text-primary" },
-  { label: "View Schedule", icon: CalendarPlus, color: "bg-accent/10 text-accent" },
-  { label: "Generate Report", icon: FileText, color: "bg-muted-foreground/10 text-muted-foreground" },
-  { label: "Manage Subscription", icon: CreditCard, color: "bg-destructive/10 text-destructive" },
+  { label: "Generate Schedule", icon: CalendarPlus, color: "bg-accent/10 text-accent" },
+  { label: "Add Venue", icon: MapPin, color: "bg-destructive/10 text-destructive" },
 ];
 
 export default function OrganizationDetailPage() {
@@ -295,10 +293,10 @@ export default function OrganizationDetailPage() {
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-[520px]">
               {[
-                { label: "Tournaments", value: org.metrics.activeTournaments, icon: Trophy },
-                { label: "Teams", value: org.metrics.totalTeams, icon: Shield },
-                { label: "Players", value: org.metrics.totalPlayers, icon: Users },
-                { label: "MRR", value: `$${org.metrics.monthlyRevenueUsd}/mo`, icon: CreditCard },
+                { label: "Active Tournaments", value: org.metrics.activeTournaments, icon: Trophy },
+                { label: "Registered Teams", value: org.metrics.totalTeams, icon: Shield },
+                { label: "Matches Today", value: org.upcomingMatches?.filter(m => new Date(m.dateISO).toDateString() === new Date().toDateString()).length ?? 0, icon: Swords },
+                { label: "Upcoming Matches", value: org.upcomingMatches?.length ?? 0, icon: Calendar },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl border border-white/15 bg-white/10 p-4">
                   <div className="flex items-center justify-between">
@@ -316,7 +314,7 @@ export default function OrganizationDetailPage() {
       {/* Quick Actions */}
       <section>
         <h2 className="text-sm font-black uppercase tracking-widest text-muted-foreground mb-3">Quick Actions</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {quickActions.map((action) => (
             <button
               key={action.label}
